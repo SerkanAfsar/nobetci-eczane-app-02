@@ -1,7 +1,7 @@
 import CustomSeoTags from "@/Components/Common/CustomSeoTags";
 import CityListWrapper from "@/Components/Content/CityListWrapper";
-
-import { Metadata } from "next";
+import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Türkiye İl İlçe Nöbetçi Eczane Listesi",
@@ -11,14 +11,14 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Nöbetçi Eczane",
-      url: "https://www.nobetcieczanelistesi.org",
+      url: "https://www.nobetcieczanelistesi.org/nobetci-eczaneler",
     },
   ],
 
   openGraph: {
     title: "Türkiye İl İlçe Nöbetçi Eczane Listesi",
     description: "Türkiye İl İlçe Nöbetçi Eczane Numaraları",
-    url: "https://www.nobetcieczanelistesi.org",
+    url: "https://www.nobetcieczanelistesi.org/nobetci-eczaneler",
     locale: "tr_TR",
     siteName: "Nöbetçi Eczane",
     authors: ["Nöbetçi Eczane"],
@@ -33,18 +33,16 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: `https://www.nobetcieczanelistesi.org`,
+    canonical: `https://www.nobetcieczanelistesi.org/nobetci-eczaneler`,
   },
 };
 
-export default async function Home() {
-  // await getCityList();
+export default function Page() {
   return (
     <>
       <CustomSeoTags />
-      {/* <HeroSection />
-      <InfoSection /> */}
       <CityListWrapper />
+      <Link href={"/nobetci-eczaneler"}>Deneme</Link>
     </>
   );
 }
