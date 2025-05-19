@@ -7,13 +7,15 @@ export const GetCityListService = async (): Promise<
   ResponseResult<CityType>
 > => {
   try {
-    const keys = await client.keys("city:*");
-    const slugUrlList = await Promise.all(keys.map((key) => client.get(key)));
-
+    const cityList = await client.get("cityList");
+    if (!cityList) {
+      throw new Error("City List Not Found");
+    }
+    const result = JSON.parse(cityList!) as string[];
     return {
       success: true,
-      data: (slugUrlList as string[]).map((item) => ({
-        cityName: (JSON.parse(item) as CityType).cityName,
+      data: result.map((item) => ({
+        cityName: item,
       })),
     };
   } catch (error: unknown) {

@@ -8,6 +8,7 @@ export type Pharmacies = {
   name?: string;
   address?: string;
   phone?: string;
+  cityName?: string;
 };
 
 export type ResponseResult<T> = {

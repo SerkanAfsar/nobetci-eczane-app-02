@@ -6,7 +6,7 @@ import { CityType } from "@/Types";
 export default async function Header() {
   const cityResult = await GetCityListService();
   if (!cityResult.success) {
-    throw new Error(cityResult.error || "Hata");
+    return <div>{cityResult.error}</div>;
   }
   return (
     <header className="block w-full bg-white">

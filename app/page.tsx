@@ -1,5 +1,7 @@
 import CustomSeoTags from "@/Components/Common/CustomSeoTags";
 import CityListWrapper from "@/Components/Content/CityListWrapper";
+import InfoSection from "@/Components/Content/InfoSection";
+import { getCityList } from "@/Services";
 
 import { Metadata } from "next";
 
@@ -38,12 +40,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  // await getCityList();
+  await getCityList();
   return (
     <>
       <CustomSeoTags />
-      {/* <HeroSection />
-      <InfoSection /> */}
+      <InfoSection />
       <CityListWrapper />
     </>
   );

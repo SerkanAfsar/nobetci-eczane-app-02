@@ -28,7 +28,7 @@ export default function InfoSection() {
   return (
     <section className="block w-full py-12">
       <div className="container mx-auto flex flex-col gap-12">
-        <h3 className="relative block w-full text-center text-3xl font-medium uppercase after:absolute after:-bottom-3 after:left-1/2 after:h-[3px] after:w-[100px] after:-translate-x-1/2 after:rounded-md after:bg-black after:content-['']">
+        <h3 className="relative block w-full text-center text-3xl font-medium uppercase after:absolute after:-bottom-4 after:left-1/2 after:h-[1px] after:w-1/5 after:-translate-x-1/2 after:rounded-md after:bg-secondary after:content-['']">
           Türkiye Nöbetçi Eczane Listesi
         </h3>
 

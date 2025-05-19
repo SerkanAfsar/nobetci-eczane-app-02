@@ -1,7 +1,8 @@
-import { slugifyPharmacyUrl, slugUrl } from "@/lib/utils";
+import { slugUrl } from "@/lib/utils";
 import { GetCityDetailItem } from "@/Services/City.Service";
-import Link from "next/link";
 import { notFound } from "next/navigation";
+import LayoutAside from "../Components/LayoutAside";
+import LayoutWrapper from "../Components/LayoutWrapper";
 
 export default async function Layout({
   params,
@@ -23,6 +24,7 @@ export default async function Layout({
   ];
 
   const districtUrl = slug[1];
+
   const districtExists =
     districtUrl &&
     districtList.length &&
@@ -76,27 +78,8 @@ export default async function Layout({
         </nav>
       </div> */}
       <div className="my-6 flex w-full flex-col gap-6 lg:flex-row">
-        <aside className="flex-auto md:flex-1/4">
-          <nav className="block w-full">
-            <ul className="flex w-full flex-col gap-3">
-              {districtList.map((item, key) => (
-                <li key={key}>
-                  <Link
-                    title={`${selectedCity?.cityName} ${item} Nöbetçi Eczaneleri`}
-                    className="bg-primary block w-full rounded-md p-3 text-white"
-                    href={slugifyPharmacyUrl({
-                      cityName: selectedCity.cityName,
-                      districtName: item,
-                    })}
-                  >
-                    {item!.replace("&nbsp;", " ")} Nöbetçi Eczaneleri
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </aside>
-        <div className="flex-auto md:flex-3/4">{children}</div>
+        <LayoutAside districtList={districtList} selectedCity={selectedCity} />
+        <LayoutWrapper>{children}</LayoutWrapper>
       </div>
     </section>
   );

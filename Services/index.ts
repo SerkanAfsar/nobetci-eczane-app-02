@@ -10,13 +10,15 @@ export const getCityList = async () => {
   const cityList = root.querySelectorAll(
     ".btn.btn-outline-secondary.btn-sm.mb-1"
   );
+  const arr: string[] = [];
   cityList.forEach(async (item) => {
     if (!item || !item.attributes["href"]) {
       return;
     }
-
+    arr.push(item.innerText);
     const pharmacies = await getPharmacyList(
-      `https://www.nobetcieczanebul.net/${item.attributes["href"]}`
+      `https://www.nobetcieczanebul.net/${item.attributes["href"]}`,
+      item.innerText
     );
 
     const cityItem: CityType = {
@@ -29,9 +31,13 @@ export const getCityList = async () => {
       JSON.stringify(cityItem)
     );
   });
+  if (!(await client.get("cityList"))) {
+    const newArr = [...new Set(arr.map((item) => item.toLocaleLowerCase()))];
+    await client.set("cityList", JSON.stringify(newArr));
+  }
 };
 
-const getPharmacyList = async (url: string) => {
+const getPharmacyList = async (url: string, cityName: string) => {
   const arr: Pharmacies[] = [];
   const response = await fetch(url);
   const result = await response.text();
@@ -65,6 +71,7 @@ const getPharmacyList = async (url: string) => {
         .trim()
         .replace("Tel:", "")
         .replace("Tel : ", ""),
+      cityName,
     });
   });
   return arr;
