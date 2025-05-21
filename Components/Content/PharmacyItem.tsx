@@ -28,7 +28,7 @@ export default function PharmacyItem({ pharmacy }: { pharmacy: Pharmacies }) {
               dangerouslySetInnerHTML={{ __html: pharmacy.address! }}
             ></div>
           </span>
-          <div className="flex gap-1 flex-wrap">
+          <div className="flex flex-wrap gap-1">
             <b dangerouslySetInnerHTML={{ __html: pharmacy.districtName! }}></b>
 
             <b>{pharmacy.cityName}</b>

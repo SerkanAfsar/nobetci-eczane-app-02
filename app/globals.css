@@ -22,6 +22,8 @@
   --heroSectionHeight: calc(var(--headerTopHeight) + var(--headerBottomHeight));
   --animate-asideMenu: asideMenu 0.4s ease-in-out;
   --animate-animateMenu: asideMenu 0.4s ease-in-out;
+  --animate-fadeIn: fadeIn 0.4s ease-in-out;
+
   @keyframes asideMenu {
     0% {
       margin-right: -100%;
@@ -42,6 +44,17 @@
       opacity: 1;
     }
   }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      visibility: hidden;
+    }
+    100% {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,6 +66,15 @@
 
 body {
   @apply m-0 min-h-screen p-0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  overflow-wrap: break-word;
 }
 @utility container {
   padding-inline: 2rem;
@@ -70,11 +92,17 @@ body {
     padding-inline: 8rem;
   }
 }
-@utility flexCenter {
-  @apply flex items-center justify-center;
+
+@layer utilities {
+  .flexCenter {
+    @apply flex items-center justify-center;
+  }
 }
 @layer components {
   .customTitle {
     @apply relative mb-4 inline-block text-xl font-bold uppercase after:absolute after:-bottom-2 after:left-0 after:block after:h-1 after:w-2/4 after:rounded-md after:bg-white after:content-[''];
+  }
+  .bottomLine {
+    @apply after:bg-secondary/40 relative block w-full text-center text-3xl font-medium uppercase after:absolute after:-bottom-4 after:left-1/2 after:h-[1px] after:w-1/5 after:-translate-x-1/2 after:rounded-md after:content-[''];
   }
 }

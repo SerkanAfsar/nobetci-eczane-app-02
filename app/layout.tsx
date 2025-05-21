@@ -5,6 +5,7 @@ import Header from "@/Components/Header";
 import Footer from "@/Components/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import NextTopLoader from "nextjs-toploader";
+import ScrollToTop from "@/Components/Content/ScrollToTop";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -30,7 +31,10 @@ export default function RootLayout({
         className={`${poppins.variable} font-poppins flex flex-col antialiased`}
       >
         <Header />
-        <main className="block w-full flex-auto">{children}</main>
+        <main className="block h-full w-full flex-auto">
+          {children}
+          <ScrollToTop />
+        </main>
         <Footer />
         <Analytics />
         <NextTopLoader

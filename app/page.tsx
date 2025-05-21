@@ -1,6 +1,7 @@
 import CustomSeoTags from "@/Components/Common/CustomSeoTags";
 import CityListWrapper from "@/Components/Content/CityListWrapper";
 import InfoSection from "@/Components/Content/InfoSection";
+import { env } from "@/lib/utils";
 import { getCityList } from "@/Services";
 
 import { Metadata } from "next";
@@ -13,14 +14,14 @@ export const metadata: Metadata = {
   authors: [
     {
       name: "Nöbetçi Eczane",
-      url: "https://www.nobetcieczanelistesi.org",
+      url: env.SITE_NAME,
     },
   ],
 
   openGraph: {
     title: "Türkiye İl İlçe Nöbetçi Eczane Listesi",
     description: "Türkiye İl İlçe Nöbetçi Eczane Numaraları",
-    url: "https://www.nobetcieczanelistesi.org",
+    url: env.SITE_NAME,
     locale: "tr_TR",
     siteName: "Nöbetçi Eczane",
     authors: ["Nöbetçi Eczane"],
@@ -35,12 +36,12 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: `https://www.nobetcieczanelistesi.org`,
+    canonical: env.SITE_NAME,
   },
 };
 
 export default async function Home() {
-  await getCityList();
+  // await getCityList();
   return (
     <>
       <CustomSeoTags />

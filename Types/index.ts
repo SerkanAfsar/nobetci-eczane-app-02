@@ -1,6 +1,6 @@
 export type CityType = {
   cityName: string;
-  url?: `https://www.nobetcieczanebul.net/${string}`;
+  url?: string;
   pharmacies?: Pharmacies[];
 };
 export type Pharmacies = {
@@ -23,4 +23,8 @@ export type LinkUrlType =
 export type NavbarLinkType = {
   title: string;
   link: LinkUrlType;
+};
+
+export type ENV = {
+  SITE_NAME: string;
 };

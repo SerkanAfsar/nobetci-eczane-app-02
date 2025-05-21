@@ -1,5 +1,5 @@
 import client from "@/lib/redis";
-import { slugUrl } from "@/lib/utils";
+import { customTrim, slugUrl } from "@/lib/utils";
 import { CityType, Pharmacies } from "@/Types";
 import { parse } from "node-html-parser";
 
@@ -8,7 +8,7 @@ export const getCityList = async () => {
   const result = await response.text();
   const root = parse(result);
   const cityList = root.querySelectorAll(
-    ".btn.btn-outline-secondary.btn-sm.mb-1"
+    "a.btn.btn-outline-secondary.btn-sm.mb-1"
   );
   const arr: string[] = [];
   cityList.forEach(async (item) => {
@@ -16,14 +16,15 @@ export const getCityList = async () => {
       return;
     }
     arr.push(item.innerText);
-    const pharmacies = await getPharmacyList(
-      `https://www.nobetcieczanebul.net/${item.attributes["href"]}`,
-      item.innerText
-    );
+
+    const hrefValue = customTrim(item.attributes["href"].trim());
+
+    const url = `https://www.nobetcieczanebul.net/${hrefValue}`;
+    const pharmacies = await getPharmacyList(url, item.innerText);
 
     const cityItem: CityType = {
       cityName: item.innerText,
-      url: `https://www.nobetcieczanebul.net/${item.attributes["href"]}`,
+      url: url,
       pharmacies,
     };
     await client.set(

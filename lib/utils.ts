@@ -1,4 +1,4 @@
-import { NavbarLinkType, ResponseResult } from "@/Types";
+import { ENV, NavbarLinkType, ResponseResult } from "@/Types";
 import clsx from "clsx";
 import { ClassValue } from "clsx";
 import slugify from "slugify";
@@ -71,4 +71,15 @@ export const errorHandler = (error: unknown): ResponseResult<any> => {
       error: "Something went wrong",
     };
   }
+};
+
+export function customTrim(url: string) {
+  if (url[url.length - 1] == "-") {
+    return url.substring(0, url.length - 1);
+  }
+  return url;
+}
+
+export const env: ENV = {
+  SITE_NAME: process.env.NEXT_PUBLIC_SITE_URL!,
 };
