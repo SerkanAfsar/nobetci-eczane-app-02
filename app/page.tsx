@@ -1,10 +1,19 @@
-import CustomSeoTags from "@/Components/Common/CustomSeoTags";
-import CityListWrapper from "@/Components/Content/CityListWrapper";
-import InfoSection from "@/Components/Content/InfoSection";
+import dynamicImport from "next/dynamic";
 import { env } from "@/lib/utils";
-import { getCityList } from "@/Services";
-
 import { Metadata } from "next";
+
+const CustomSeoTags = dynamicImport(
+  () => import("../Components/Common/CustomSeoTags"),
+);
+const CityListWrapper = dynamicImport(
+  () => import("../Components/Content/CityListWrapper"),
+);
+const HeroSection = dynamicImport(
+  () => import("../Components/Content/HeroSection"),
+);
+const InfoSection = dynamicImport(
+  () => import("../Components/Content/InfoSection"),
+);
 
 export const metadata: Metadata = {
   title: "Türkiye İl İlçe Nöbetçi Eczane Listesi",
@@ -41,10 +50,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  // await getCityList();
   return (
     <>
       <CustomSeoTags />
+      <HeroSection />
       <InfoSection />
       <CityListWrapper />
     </>

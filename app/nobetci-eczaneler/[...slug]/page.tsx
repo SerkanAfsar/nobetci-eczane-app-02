@@ -1,7 +1,16 @@
-import CityDetailInfo from "@/Components/Content/CityDetailInfo";
-import PharmacyItem from "@/Components/Content/PharmacyItem";
+import DynamicImport from "next/dynamic";
 import { slugUrl } from "@/lib/utils";
 import { GetCityDetailItem } from "@/Services/City.Service";
+
+const CustomSeoTags = DynamicImport(
+  () => import("../../../Components/Common/CustomSeoTags"),
+);
+const CityDetailInfo = DynamicImport(
+  () => import("../../../Components/Content/CityDetailInfo"),
+);
+const PharmacyItem = DynamicImport(
+  () => import("../../../Components/Content/PharmacyItem"),
+);
 
 export default async function Page({
   params,
@@ -22,17 +31,12 @@ export default async function Page({
       : undefined;
   return (
     <>
-      {/* <h4 className="bg-primary mb-3 block w-full rounded-md p-3 text-center text-base font-bold text-white uppercase lg:text-left lg:text-lg">
-        {new Date().toLocaleString()} {"-"} {result.city.ilAdi}
-        {districtName && `- ${districtName}`} Nöbetçi Eczaneleri{" "}
-      </h4> */}
+      <CustomSeoTags
+        cityName={cityDetail?.cityName}
+        districtName={districtName}
+      />
       <CityDetailInfo cityName={cityName} districtName={districtName} />
-      <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {/* <CustomSeoTags
-          cityName={result.city.ilAdi}
-          districtName={districtName}
-        /> */}
-
+      <div className="pharmacyList grid gap-6 md:grid-cols-2 xl:grid-cols-3">
         {pharmacies?.map((item, key) => (
           <PharmacyItem pharmacy={item} key={key} />
         ))}

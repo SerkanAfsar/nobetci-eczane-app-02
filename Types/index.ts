@@ -28,3 +28,9 @@ export type NavbarLinkType = {
 export type ENV = {
   SITE_NAME: string;
 };
+
+export type CustomOptionsType = {
+  id: string | number;
+  value: string;
+  label?: string;
+};

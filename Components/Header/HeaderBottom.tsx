@@ -17,7 +17,7 @@ export default function HeaderBottom() {
       title: item.title,
       href: item.link,
       icon: pharmacy,
-    })
+    }),
   );
   return (
     <section className="bg-secondary hidden h-[calc(var(--headerBottomHeight))] w-full text-sm text-white uppercase xl:block">

@@ -35,14 +35,14 @@ export default function HeaderAside({
   return (
     <aside
       className={cn(
-        "inset-0 hidden h-full w-full flex-col gap-3 bg-black/80",
-        isOpened && "fixed flex"
+        "inset-0 z-10 hidden h-full w-full flex-col gap-3 bg-black/80",
+        isOpened && "fixed flex",
       )}
     >
       <div
         className={cn(
           "absolute top-0 right-0 bottom-0 flex w-[260px] flex-col gap-3 overflow-auto overscroll-contain bg-white transition-all",
-          isOpened && "animate-asideMenu"
+          isOpened && "animate-asideMenu",
         )}
       >
         <div className="bg-secondary sticky inset-0 z-10 flex w-full items-center justify-between p-3 text-white">

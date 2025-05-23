@@ -1,4 +1,11 @@
-import { ENV, NavbarLinkType, ResponseResult } from "@/Types";
+import {
+  CityType,
+  CustomOptionsType,
+  ENV,
+  NavbarLinkType,
+  Pharmacies,
+  ResponseResult,
+} from "@/Types";
 import clsx from "clsx";
 import { ClassValue } from "clsx";
 import slugify from "slugify";
@@ -83,3 +90,28 @@ export function customTrim(url: string) {
 export const env: ENV = {
   SITE_NAME: process.env.NEXT_PUBLIC_SITE_URL!,
 };
+
+export function GetCustomOptions<
+  T extends object,
+  FieldOne extends keyof T,
+  FieldTwo extends keyof T,
+>(arr: T[], fieldOne: FieldOne, fieldTwo: FieldTwo): CustomOptionsType[] {
+  return arr.map((item) => ({
+    id: item[fieldOne] as string | number,
+    value: item[fieldTwo] as string,
+    label: item[fieldTwo] as string,
+  }));
+}
+
+export function GetDistrictListCustomOptions(
+  pharmacyArr: Pharmacies[],
+): CustomOptionsType[] {
+  const districtList = new Set(pharmacyArr.map((item) => item.districtName));
+  const newArr: CustomOptionsType[] = [...districtList].map((item) => ({
+    id: item!,
+    value: item!,
+    label: item!,
+  }));
+
+  return GetCustomOptions(newArr, "id", "label");
+}

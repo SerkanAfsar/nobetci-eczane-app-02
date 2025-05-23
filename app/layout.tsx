@@ -31,7 +31,7 @@ export default function RootLayout({
         className={`${poppins.variable} font-poppins flex flex-col antialiased`}
       >
         <Header />
-        <main className="block h-full w-full flex-auto">
+        <main className="flex h-full w-full flex-auto flex-col">
           {children}
           <ScrollToTop />
         </main>

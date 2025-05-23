@@ -65,7 +65,7 @@
 }
 
 body {
-  @apply m-0 min-h-screen p-0;
+  @apply m-0 h-full min-h-screen p-0;
 }
 h1,
 h2,
@@ -76,26 +76,26 @@ h6,
 p {
   overflow-wrap: break-word;
 }
-@utility container {
-  padding-inline: 2rem;
-
-  @variant md {
-    padding-inline: 4rem;
-  }
-  @variant lg {
-    padding-inline: 2rem;
-  }
-  @variant xl {
-    padding-inline: 4rem;
-  }
-  @variant 2xl {
-    padding-inline: 8rem;
-  }
-}
 
 @layer utilities {
   .flexCenter {
     @apply flex items-center justify-center;
+  }
+  .container {
+    padding-inline: 2rem;
+
+    @variant md {
+      padding-inline: 4rem;
+    }
+    @variant lg {
+      padding-inline: 2rem;
+    }
+    @variant xl {
+      padding-inline: 4rem;
+    }
+    @variant 2xl {
+      padding-inline: 8rem;
+    }
   }
 }
 @layer components {

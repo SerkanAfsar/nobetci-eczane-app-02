@@ -9,7 +9,7 @@ export default async function Header() {
     return <div>{cityResult.error}</div>;
   }
   return (
-    <header className="block w-full bg-white">
+    <header className="block w-full bg-white shadow xl:shadow-none">
       <HeaderTop cityList={cityResult.data as CityType[]} />
       <HeaderBottom />
     </header>

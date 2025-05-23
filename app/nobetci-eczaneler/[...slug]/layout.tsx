@@ -1,9 +1,13 @@
+import dynamic from "next/dynamic";
 import { slugUrl } from "@/lib/utils";
 import { GetCityDetailItem } from "@/Services/City.Service";
 import { notFound } from "next/navigation";
-import LayoutAside from "../Components/LayoutAside";
-import LayoutWrapper from "../Components/LayoutWrapper";
-import BreadCrumb from "@/Components/Common/BreadCrumb";
+
+const LayoutAside = dynamic(() => import("../Components/LayoutAside"));
+const LayoutWrapper = dynamic(() => import("../Components/LayoutWrapper"));
+const BreadCrumb = dynamic(
+  () => import("../../../Components/Common/BreadCrumb"),
+);
 
 export default async function Layout({
   params,
@@ -35,8 +39,10 @@ export default async function Layout({
   }
   if (!selectedCity.pharmacies?.length) {
     return (
-      <section className="container mx-auto flex h-full items-center justify-center">
-        Bu İle Ait Eczaneler Hazırlanıyor
+      <section className="bg-primary flex h-full flex-auto items-center justify-center py-4 text-center text-white">
+        <h1 className="text-2xl font-semibold text-white uppercase">
+          {`"${selectedCity.cityName}"`} İline Ait Eczaneler Hazırlanmaktadır..
+        </h1>
       </section>
     );
   }

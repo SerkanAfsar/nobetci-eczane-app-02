@@ -1,8 +1,14 @@
-import CustomSeoTags from "@/Components/Common/CustomSeoTags";
-import CityListWrapper from "@/Components/Content/CityListWrapper";
+import dynamic from "next/dynamic";
 import { env } from "@/lib/utils";
 import type { Metadata } from "next";
-import Link from "next/link";
+
+const CustomSeoTags = dynamic(
+  () => import("../../Components/Common/CustomSeoTags"),
+);
+
+const CityListWrapper = dynamic(
+  () => import("../../Components/Content/CityListWrapper"),
+);
 
 export const metadata: Metadata = {
   title: "Türkiye İl İlçe Nöbetçi Eczane Listesi",
@@ -43,9 +49,6 @@ export default function Page() {
     <>
       <CustomSeoTags />
       <CityListWrapper />
-      <Link href={"/nobetci-eczaneler"}>Deneme</Link>
     </>
   );
 }
-
-export const dynamic = "force-dynamic";

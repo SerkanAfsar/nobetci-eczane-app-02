@@ -8,7 +8,7 @@ export const getCityList = async () => {
   const result = await response.text();
   const root = parse(result);
   const cityList = root.querySelectorAll(
-    "a.btn.btn-outline-secondary.btn-sm.mb-1"
+    "a.btn.btn-outline-secondary.btn-sm.mb-1",
   );
   const arr: string[] = [];
   cityList.forEach(async (item) => {
@@ -25,11 +25,11 @@ export const getCityList = async () => {
     const cityItem: CityType = {
       cityName: item.innerText,
       url: url,
-      pharmacies,
+      pharmacies: pharmacies ?? [],
     };
     await client.set(
       `city:${slugUrl(`${item.innerText} nöbetçi eczaneleri`)}`,
-      JSON.stringify(cityItem)
+      JSON.stringify(cityItem),
     );
   });
   if (!(await client.get("cityList"))) {
@@ -41,6 +41,9 @@ export const getCityList = async () => {
 const getPharmacyList = async (url: string, cityName: string) => {
   const arr: Pharmacies[] = [];
   const response = await fetch(url);
+  if (!response.ok) {
+    return;
+  }
   const result = await response.text();
   const root = parse(result);
 
@@ -48,7 +51,7 @@ const getPharmacyList = async (url: string, cityName: string) => {
   items.forEach((pharmacyItem) => {
     const districtName = pharmacyItem.querySelector("kbd")?.innerText;
     const name = pharmacyItem.querySelector(
-      "div:nth-child(2) strong"
+      "div:nth-child(2) strong",
     )?.innerText;
     const addressNode = pharmacyItem.querySelector("div:nth-child(3)");
     const linkNode = addressNode?.querySelector("a");
