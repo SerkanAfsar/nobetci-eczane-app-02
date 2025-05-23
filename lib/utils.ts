@@ -1,5 +1,4 @@
 import {
-  CityType,
   CustomOptionsType,
   ENV,
   NavbarLinkType,

@@ -21,13 +21,13 @@ export default function CityDetailInfo({
       </h2>
       <p>
         {cityName} {districtName && districtName} Nöbetçi Eczaneler
-        Pazartesi,Salı,Çarşamba,Perşembe Cuma günleri genelde akşam saat
-        18.00'de başlar,ertesi gün sabahleyin saat 08.00'de sona erer.
+        Pazartesi,Salı,Çarşamba,Perşembe Cuma günleri genelde akşam saat 18.00
+        de başlar,ertesi gün sabahleyin saat 08.00 de sona erer.
       </p>
       <p>
         {cityName} {districtName && districtName} Nöbetçi Eczaneler Cumartesi ve
-        Pazar günleri genelde sabahleyin saat 08.00'de başlar,ertesi gün
-        sabahleyin saat 08.00'de sona erer.
+        Pazar günleri genelde sabahleyin saat 08.00 de başlar,ertesi gün
+        sabahleyin saat 08.00 de sona erer.
       </p>
     </section>
   );

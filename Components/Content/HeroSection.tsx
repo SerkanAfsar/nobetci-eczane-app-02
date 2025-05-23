@@ -1,4 +1,3 @@
-import { GetCustomOptions } from "@/lib/utils";
 import { GetCityListService } from "@/Services/City.Service";
 import { CityType } from "@/Types";
 
