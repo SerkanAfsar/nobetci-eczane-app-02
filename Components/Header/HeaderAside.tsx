@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn, slugifyPharmacyUrl } from "@/lib/utils";
 import { CityType } from "@/Types";
 
 import Link from "next/link";
@@ -58,8 +58,8 @@ export default function HeaderAside({
           {cityList.map((city, index) => (
             <li key={index}>
               <Link
-                className="bg-primary block w-full rounded-md p-3 text-white shadow"
-                href={`/nobetci-eczaneler/${city.cityName}`}
+                className="bg-primary block w-full rounded-md p-3 text-white capitalize shadow"
+                href={slugifyPharmacyUrl({ cityName: city.cityName })}
                 title={`${city.cityName} Nöbetçi Eczaneleri`}
               >
                 {city.cityName} Nöbetçi Eczaneleri
