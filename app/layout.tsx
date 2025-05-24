@@ -2,13 +2,11 @@ import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-
 const Header = dynamic(() => import("../Components/Header"));
 const Footer = dynamic(() => import("../Components/Footer"));
 const ScrollToTop = dynamic(() => import("../Components/Content/ScrollToTop"));
-
-import { Analytics } from "@vercel/analytics/react";
 import NextTopLoader from "nextjs-toploader";
+import Script from "next/script";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -28,8 +26,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="tr">
-      {/* <GoogleTagManager gtmId="G-6MLYNK12P4" /> */}
-
       <body
         className={`${poppins.variable} font-poppins flex flex-col antialiased`}
       >
@@ -39,30 +35,30 @@ export default function RootLayout({
           <ScrollToTop />
         </main>
         <Footer />
-        <Analytics />
+
         <NextTopLoader
           color="#cc0000"
           height={4}
           showSpinner={true}
           zIndex={1600}
         />
-        {/* {process.env.NODE_ENV === "production" && (
+        {process.env.NODE_ENV === "production" && (
           <>
             <Script
-              src={`https://www.googletagmanager.com/gtag/js?id=G-6MLYNK12P4`}
+              src={`https://www.googletagmanager.com/gtag/js?id=G-NK5GJ2XP85`}
               strategy="afterInteractive"
             />
             <Script id="google-analytics" strategy="afterInteractive">
               {`
-            window.dataLayer = window.dataLayer || [];
+              window.dataLayer = window.dataLayer || [];
               function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
+              gtag('js', new Date());
 
-                gtag('config', 'G-6MLYNK12P4');
+              gtag('config', 'G-NK5GJ2XP85');
             `}
             </Script>
           </>
-        )} */}
+        )}
       </body>
     </html>
   );
