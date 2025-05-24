@@ -19,7 +19,7 @@ export default function LayoutAside({
   return (
     <aside className="flex-auto md:flex-1/4">
       <nav className="block w-full">
-        <ul className="flex w-full flex-col gap-3">
+        <ul className="grid w-full gap-3 md:grid-cols-2 lg:grid-cols-none">
           {districtList.map((item, key) => {
             const linkPathName = slugifyPharmacyUrl({
               cityName: selectedCity.cityName,

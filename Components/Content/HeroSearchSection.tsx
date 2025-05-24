@@ -6,21 +6,84 @@ import CustomSelect from "../UI/CustomSelect";
 import { CityType, CustomOptionsType } from "@/Types";
 import { GetCustomOptions, slugifyPharmacyUrl } from "@/lib/utils";
 
-const customClassNames = {
-  control: () =>
-    "border rounded-lg w-[230px] p-4 bg-white dark:bg-gray-800 text-sm",
-  menu: () => "mt-1 rounded-lg shadow-lg bg-white dark:bg-gray-800 z-10",
-  option: ({ isFocused, isSelected }: any) =>
-    `cursor-pointer px-4 py-2 ${
-      isSelected
-        ? "bg-primary text-white"
-        : isFocused
-          ? "bg-primary text-white"
-          : "bg-white dark:bg-gray-800"
-    }`,
-  singleValue: () => "text-gray-800 dark:text-white",
-  input: () => "text-gray-800 dark:text-white",
+// const customClassNames = {
+//   control: () => "control",
+//   menu: () => "menu",
+//   option: ({ isFocused, isSelected }: any) =>
+//     `option ${isSelected ? "isSelected" : isFocused ? "isSelected" : "custom"}`,
+//   singleValue: () => "singleValue",
+//   input: () => "input",
+// };
+
+const customClassNames2 = {
+  control: (base: any, state: any) => ({
+    ...base,
+    height: "100%",
+    width: "230px",
+    borderRadius: "0.5rem",
+    backgroundColor: "#1E2939",
+    padding: "0.25rem 0.5rem",
+    fontSize: "0.875rem",
+    color: "#fff",
+    outline: "none",
+    border: state.focus ? "none" : "none",
+    boxShadow: "none", // outline'ı kaldırır
+    borderColor: state.isFocused ? "transparent" : base.borderColor, // mavi border'ı kaldırır
+    "&:hover": {
+      borderColor: "transparent",
+    },
+  }),
+
+  menu: (base: any) => ({
+    ...base,
+    zIndex: 10,
+    marginTop: "0.25rem",
+    borderRadius: "0.5rem",
+    backgroundColor: "#ffffff",
+    boxShadow:
+      "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1)",
+  }),
+
+  option: (base: any, state: any) => ({
+    ...base,
+    cursor: "pointer",
+    padding: "0.5rem 1rem",
+    backgroundColor: state.isSelected
+      ? "#fff" // Tailwind blue-500
+      : state.isFocused
+        ? "#1e2939" // Tailwind gray-100
+        : "#1e2939",
+    color: state.isSelected ? "#000" : "#fff", // text-white or text-gray-800
+  }),
+
+  singleValue: (base: any) => ({
+    ...base,
+    color: "#fff", // Tailwind text-gray-800
+  }),
+  indicatorSeparator: () => ({
+    display: "none", // Çizgiyi kaldırır
+  }),
+
+  input: (base: any) => ({
+    ...base,
+    color: "#fff", // Tailwind text-gray-800
+    border: "none",
+    outline: "none",
+  }),
+
+  placeholder: (base: any) => ({
+    ...base,
+    color: "#fff", // Tailwind text-gray-400
+  }),
+  dropdownIndicator: (base: any) => ({
+    ...base,
+    color: "white", // ikon rengi beyaz
+    "&:hover": {
+      color: "white", // hover'da da beyaz kalır
+    },
+  }),
 };
+
 const firstCityItem = { id: "", value: "", label: "Şehir Seçiniz" };
 const firstDistrictItem = { id: "", value: "", label: "İlçe Seçiniz" };
 
@@ -83,18 +146,17 @@ export default function HeroSearchSection({
       <CustomSelect
         options={cityOptionList}
         placeholder="Sehir Seçiniz"
-        classNames={customClassNames}
+        styles={customClassNames2}
         onChange={(item) => setSelectedCity(item as CustomOptionsType)}
-        unstyled
         noOptionsMessage={() => "Şehir Bulunamadı"}
       />
       <CustomSelect
         options={districtList}
         placeholder="İlçe Seçiniz"
         onChange={(item) => setSelectedDistrict(item as CustomOptionsType)}
-        classNames={customClassNames}
+        // classNames={customClassNames}
+        styles={customClassNames2}
         value={selectedDistrict}
-        unstyled
         noOptionsMessage={() => "İlçe Bulunamadı"}
       />
 

@@ -1,11 +1,14 @@
+import dynamic from "next/dynamic";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import Header from "@/Components/Header";
-import Footer from "@/Components/Footer";
+
+const Header = dynamic(() => import("../Components/Header"));
+const Footer = dynamic(() => import("../Components/Footer"));
+const ScrollToTop = dynamic(() => import("../Components/Content/ScrollToTop"));
+
 import { Analytics } from "@vercel/analytics/react";
 import NextTopLoader from "nextjs-toploader";
-import ScrollToTop from "@/Components/Content/ScrollToTop";
 
 const poppins = Poppins({
   variable: "--font-poppins",

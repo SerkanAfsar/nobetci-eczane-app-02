@@ -105,4 +105,25 @@ p {
   .bottomLine {
     @apply after:bg-secondary/40 relative block w-full text-center text-3xl font-medium uppercase after:absolute after:-bottom-4 after:left-1/2 after:h-[1px] after:w-1/5 after:-translate-x-1/2 after:rounded-md after:content-[''];
   }
+  .control {
+    @apply w-[230px] rounded-lg border bg-white p-4 text-sm dark:bg-gray-800;
+  }
+  .menu {
+    @apply z-10 mt-1 rounded-lg bg-white shadow-lg dark:bg-gray-800;
+  }
+  .option {
+    @apply cursor-pointer px-4 py-2;
+  }
+  .isSelected {
+    @apply bg-primary text-white;
+  }
+  .custom {
+    @apply bg-white dark:bg-gray-800;
+  }
+  .singleValue {
+    @apply text-gray-800 dark:text-white;
+  }
+  .input {
+    @apply text-gray-800 dark:text-white;
+  }
 }

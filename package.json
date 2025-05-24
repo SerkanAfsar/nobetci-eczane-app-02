@@ -8,6 +8,13 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "browserslist": [
+    "defaults",
+    "last 2 versions",
+    "IE 11",
+    "> 1%",
+    "not dead"
+  ],
   "dependencies": {
     "@vercel/analytics": "^1.5.0",
     "clsx": "^2.1.1",
