@@ -2,6 +2,7 @@ export type CityType = {
   cityName: string;
   url?: string;
   pharmacies?: Pharmacies[];
+  districtList?: string[];
 };
 export type Pharmacies = {
   districtName?: string;

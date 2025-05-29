@@ -24,8 +24,30 @@ export const GetCityListService = async (): Promise<
 };
 
 export const GetCityDetailItem = async (
-  citySlugUrl: string
+  citySlugUrl: string,
 ): Promise<CityType | undefined> => {
   const result = await client.get(`city:${citySlugUrl}`);
   return result ? (JSON.parse(result) as CityType) : undefined;
+};
+
+export const GetSiteMapList = async () => {
+  const cityKeys = [];
+  let cursor = 0;
+
+  // Tüm city:* key'lerini SCAN ile al
+  do {
+    const result = await client.scan(cursor, {
+      MATCH: "city:*",
+    });
+    cursor = Number(result.cursor);
+    cityKeys.push(...result.keys);
+  } while (cursor !== 0);
+
+  const values = await client.mGet(cityKeys);
+
+  const keyValuePairs: CityType[] = cityKeys.map((key, index) => {
+    return JSON.parse(values[index]!) as CityType;
+  });
+  console.log(keyValuePairs);
+  return keyValuePairs;
 };
