@@ -36,11 +36,11 @@ export default function PharmacyItem({ pharmacy }: { pharmacy: Pharmacies }) {
 
           <a
             title={`${pharmacy.name} Telefon Numarası`}
-            href={`tel:${pharmacy
-              .phone!.replace("(", "")
+            href={`tel:${pharmacy?.phone
+              ?.trim()
+              .replace("(", "")
               .replace(")", "")
-              .replace(" ", "")
-              .trim()}`}
+              .replace(" ", "")}`}
             className="mt-auto font-bold"
           >
             <span className="mr-2 underline">Tel (Ara) :</span>

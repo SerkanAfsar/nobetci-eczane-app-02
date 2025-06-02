@@ -11,9 +11,7 @@ export const getCityList = async () => {
     "a.btn.btn-outline-secondary.btn-sm.mb-1",
   );
   const arr: string[] = [];
-  // cityList.forEach(async (item) => {
 
-  // });
   for (let index = 0; index < cityList.length; index++) {
     const item = cityList[index];
 
